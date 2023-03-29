@@ -64,9 +64,7 @@ class _FilePicker1State extends State<FilePicker1> {
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {
-                    pickFile();
-                  },
+                  onPressed: pickFile,
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                   child: const Text(
                     "Pick image file",

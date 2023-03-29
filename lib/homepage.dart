@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_example/file_picker.dart';
+import 'package:image_example/path.dart';
 import 'package:image_example/url.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,20 +19,19 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   File? images;
   File? videoes;
   VideoPlayerController? controller;
   VideoPlayerController? controller2;
   ChewieController? chewieController;
-  bool isCameraPermissionGranted = false;
-  bool isStoragePermissionGranted = false;
 
   @override
   void initState() {
     super.initState();
     requestPermissions();
     netWorkVideo();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -37,10 +40,23 @@ class _MyHomePageState extends State<MyHomePage> {
     controller?.dispose();
     controller2?.dispose();
     chewieController?.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    // if (state == AppLifecycleState.resumed) {
+    //   requestPermissions();
+    // }
+    if (await Permission.storage.status.isGranted &&
+        await Permission.camera.status.isGranted) {
+      Navigator.of(context).pop();
+    }
+    super.didChangeAppLifecycleState(state);
   }
 
   Future<void> getImage(ImageSource source) async {
-    if (isCameraPermissionGranted && source == ImageSource.camera) {
+    if (source == ImageSource.camera) {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       // final imagesave = await saveImage(image.path);
@@ -49,10 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
         images = imagesave;
       });
     }
-    if (isStoragePermissionGranted && source == ImageSource.gallery) {
+    if (source == ImageSource.gallery) {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
-      // final imagesave = await saveImage(image.path);
       final imagesave = File(image.path);
       setState(() {
         images = imagesave;
@@ -61,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> getVideo(ImageSource source) async {
-    if (isCameraPermissionGranted && source == ImageSource.camera) {
+    if (source == ImageSource.camera) {
       final video = await ImagePicker().pickVideo(source: source);
       videoes = File(video!.path);
       controller = VideoPlayerController.file(videoes!)
@@ -111,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         });
     }
-    if (isStoragePermissionGranted && source == ImageSource.gallery) {
+    if (source == ImageSource.gallery) {
       final video = await ImagePicker().pickVideo(source: source);
       videoes = File(video!.path);
       controller = VideoPlayerController.file(videoes!)
@@ -173,48 +188,31 @@ class _MyHomePageState extends State<MyHomePage> {
       });
   }
 
-  Future<void> requestPermissions() async {
-    Map<Permission, PermissionStatus> permissionStatuses = await [
-      Permission.camera,
-      Permission.storage,
-    ].request();
-
-    permissionStatuses.forEach((permission, status) {
-      if (permission == Permission.camera &&
-          status == PermissionStatus.granted) {
-        setState(() {
-          isCameraPermissionGranted = true;
-        });
-      }
-      if (permission == Permission.storage &&
-          status == PermissionStatus.granted) {
-        setState(() {
-          isStoragePermissionGranted = true;
-        });
-      }
-      if (permission == Permission.camera &&
-          status == PermissionStatus.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.blue,
-          content: Text('This permission is recommended for using camera'),
-        ));
-      }
-      if (permission == Permission.storage &&
-          status == PermissionStatus.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.blue,
-          content: Text('This permission is recommended for using camera'),
-        ));
-      }
-      if (permission == Permission.camera &&
-          status == PermissionStatus.permanentlyDenied) {
-        openAppSettings();
-      }
-      if (permission == Permission.storage &&
-          status == PermissionStatus.permanentlyDenied) {
-        openAppSettings();
-      }
-    });
+  requestPermissions() async {
+    PermissionStatus camera = await Permission.camera.request();
+    PermissionStatus storage = await Permission.storage.request();
+    if (camera.isGranted && storage.isGranted) {
+      return;
+    } else if (camera.isPermanentlyDenied && storage.isPermanentlyDenied) {
+      SystemNavigator.pop();
+    } else {
+      showDialog<void>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Permission required'),
+              content: const Text('can not proceed without permission'),
+              actions: [
+                TextButton(
+                    onPressed: () async {
+                      openAppSettings();
+                    },
+                    child: const Text('Open App setting')),
+              ],
+            );
+          });
+    }
   }
 
   @override
@@ -228,6 +226,27 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(children: [
               const SizedBox(
                 height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PathExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go to path picker example",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
