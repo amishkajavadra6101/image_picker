@@ -1,16 +1,14 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:io';
-
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_example/file_picker.dart';
-import 'package:image_example/path.dart';
-import 'package:image_example/url.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image_example/file_picker_example.dart';
+import 'package:image_example/flutter_easy_loading_example.dart';
+import 'package:image_example/path_provider_example.dart';
+import 'package:image_example/toast_example.dart';
+import 'package:image_example/url_launcher_exampler.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:video_player/video_player.dart';
+
+import 'cached_network_image_example.dart';
+import 'geolocator_example.dart';
+import 'image_picker_example.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -20,195 +18,62 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
-  File? images;
-  File? videoes;
-  VideoPlayerController? controller;
-  VideoPlayerController? controller2;
-  ChewieController? chewieController;
-
   @override
   void initState() {
-    super.initState();
     requestPermissions();
-    netWorkVideo();
+    // netWorkVideo();
     WidgetsBinding.instance.addObserver(this);
+    super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller?.dispose();
-    controller2?.dispose();
-    chewieController?.dispose();
     WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
     // if (state == AppLifecycleState.resumed) {
-    //   requestPermissions();
-    // }
-    if (await Permission.storage.status.isGranted &&
-        await Permission.camera.status.isGranted) {
-      Navigator.of(context).pop();
+    if (await Permission.camera.status.isGranted) {
+      if (context.mounted) return;
+      Navigator.pop(context);
     }
+    // }
+
     super.didChangeAppLifecycleState(state);
   }
 
-  Future<void> getImage(ImageSource source) async {
-    if (source == ImageSource.camera) {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      // final imagesave = await saveImage(image.path);
-      final imagesave = File(image.path);
-      setState(() {
-        images = imagesave;
-      });
-    }
-    if (source == ImageSource.gallery) {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imagesave = File(image.path);
-      setState(() {
-        images = imagesave;
-      });
-    }
-  }
-
-  Future<void> getVideo(ImageSource source) async {
-    if (source == ImageSource.camera) {
-      final video = await ImagePicker().pickVideo(source: source);
-      videoes = File(video!.path);
-      controller = VideoPlayerController.file(videoes!)
-        ..initialize().then((_) {
-          setState(() {});
-          controller!.setLooping(true);
-          controller!.play();
-          chewieController = ChewieController(
-            videoPlayerController: controller!,
-            autoPlay: true,
-            looping: true,
-            additionalOptions: (context) {
-              return <OptionItem>[
-                OptionItem(
-                  onTap: () => debugPrint('My option works!'),
-                  iconData: Icons.chat,
-                  title: 'My localized title',
-                ),
-                OptionItem(
-                  onTap: () => debugPrint('Another option working!'),
-                  iconData: Icons.chat,
-                  title: 'Another localized title',
-                ),
-              ];
-            },
-            subtitle: Subtitles([
-              Subtitle(
-                index: 0,
-                start: Duration.zero,
-                end: const Duration(seconds: 10),
-                text: 'Hello from subtitles',
-              ),
-              Subtitle(
-                index: 1,
-                start: const Duration(seconds: 10),
-                end: const Duration(seconds: 20),
-                text: 'Whats up? :)',
-              ),
-            ]),
-            subtitleBuilder: (context, subtitle) => Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                subtitle,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          );
-        });
-    }
-    if (source == ImageSource.gallery) {
-      final video = await ImagePicker().pickVideo(source: source);
-      videoes = File(video!.path);
-      controller = VideoPlayerController.file(videoes!)
-        ..initialize().then((_) {
-          setState(() {});
-          controller!.setLooping(true);
-          controller!.play();
-          chewieController = ChewieController(
-            videoPlayerController: controller!,
-            autoPlay: true,
-            looping: true,
-            additionalOptions: (context) {
-              return <OptionItem>[
-                OptionItem(
-                  onTap: () => debugPrint('My option works!'),
-                  iconData: Icons.chat,
-                  title: 'My localized title',
-                ),
-                OptionItem(
-                  onTap: () => debugPrint('Another option working!'),
-                  iconData: Icons.chat,
-                  title: 'Another localized title',
-                ),
-              ];
-            },
-            subtitle: Subtitles([
-              Subtitle(
-                index: 0,
-                start: Duration.zero,
-                end: const Duration(seconds: 10),
-                text: 'Hello from subtitles',
-              ),
-              Subtitle(
-                index: 1,
-                start: const Duration(seconds: 10),
-                end: const Duration(seconds: 20),
-                text: 'Whats up? :)',
-              ),
-            ]),
-            subtitleBuilder: (context, subtitle) => Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                subtitle,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          );
-        });
-    }
-  }
-
-  void netWorkVideo() {
-    controller2 = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-        controller2!.setLooping(true);
-        controller2!.play();
-      });
-  }
-
   requestPermissions() async {
-    PermissionStatus camera = await Permission.camera.request();
-    PermissionStatus storage = await Permission.storage.request();
-    if (camera.isGranted && storage.isGranted) {
+    PermissionStatus camera = await Permission.camera.status;
+    // PermissionStatus storage = await Permission.storage.status;
+    if (!camera.isGranted) {
+      await Permission.camera.request();
+    }
+
+    if (camera.isGranted) {
       return;
-    } else if (camera.isPermanentlyDenied && storage.isPermanentlyDenied) {
-      SystemNavigator.pop();
     } else {
-      showDialog<void>(
+      // print(
+      //     'denieddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
+      // await openAppSettings();
+
+      // ignore: use_build_context_synchronously
+      showDialog(
           context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
+          barrierDismissible: true,
+          builder: (context) {
             return AlertDialog(
-              title: const Text('Permission required'),
-              content: const Text('can not proceed without permission'),
+              content: const Text(
+                'in order to work properly application needs permission to access your camera,photos and media',
+                style: TextStyle(fontSize: 20),
+              ),
               actions: [
                 TextButton(
                     onPressed: () async {
-                      openAppSettings();
+                      await openAppSettings();
                     },
-                    child: const Text('Open App setting')),
+                    child: const Text('Go TO SETTING')),
               ],
             );
           });
@@ -221,9 +86,10 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         appBar: AppBar(
           title: const Text('image picker'),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(children: [
+        body: Center(
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(
                 height: 20,
               ),
@@ -235,7 +101,98 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PathExample()),
+                        MaterialPageRoute(
+                            builder: (context) => const ToastExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go to toast example",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const CachedNetworkImageExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "cached_network_image",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GeolocatorExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go to geolocator example",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const FlutterEasyLoadingExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "flutter easy loading",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PathExample()),
                       );
                     },
                     style:
@@ -263,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     child: const Text(
-                      "go to file picker",
+                      "go to file picker example",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
@@ -284,120 +241,32 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     child: const Text(
-                      "go to Url Launcher",
+                      "go to url Launcher ",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              images == null
-                  ? Image.network("https://picsum.photos/250?image=9")
-                  : Image.file(
-                      images!,
-                      width: 250,
-                      height: 250,
-                      fit: BoxFit.cover,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ImagePickerExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go to image picker ",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  onPressed: () {
-                    getImage(ImageSource.gallery);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.image_outlined),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text("Pick Image form Gallery")
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  onPressed: () {
-                    getImage(ImageSource.camera);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.camera),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text("Pick Image form Camera")
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              videoes != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AspectRatio(
-                          aspectRatio: controller!.value.aspectRatio,
-                          child: Chewie(
-                            controller: chewieController!,
-                          )),
-                      // child: VideoPlayer(
-                      //   controller!
-                      // ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Chewie(
-                            controller: ChewieController(
-                              videoPlayerController: controller2!,
-                              autoPlay: true,
-                              looping: true,
-                            ),
-                          )
-                          // child: VideoPlayer(
-                          //   controller2!
-                          // ),
-                          ),
-                    ),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  onPressed: () {
-                    getVideo(ImageSource.gallery);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.image_outlined),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text("Pick video form Gallery")
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  onPressed: () {
-                    getVideo(ImageSource.camera);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.camera),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text("Pick video form Camera")
-                    ],
                   ),
                 ),
               ),
