@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:image_example/file_picker_example.dart';
 import 'package:image_example/flutter_easy_loading_example.dart';
@@ -18,10 +21,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+  // bool showingAlertDialog = false;
   @override
   void initState() {
     requestPermissions();
-    // netWorkVideo();
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'Home_Screen');
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -34,46 +38,46 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    // if (state == AppLifecycleState.resumed) {
-    if (await Permission.camera.status.isGranted) {
-      if (context.mounted) return;
-      Navigator.pop(context);
-    }
-    // }
-
     super.didChangeAppLifecycleState(state);
+    // if (showingAlertDialog && await Permission.camera.status.isGranted) {
+    //   Navigator.pop(context);
+    // }
   }
 
   requestPermissions() async {
     PermissionStatus camera = await Permission.camera.status;
-    // PermissionStatus storage = await Permission.storage.status;
+
     if (!camera.isGranted) {
       await Permission.camera.request();
     }
-
+    camera = await Permission.camera.status;
     if (camera.isGranted) {
       return;
     } else {
-      // print(
-      //     'denieddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
-      // await openAppSettings();
-
-      // ignore: use_build_context_synchronously
       showDialog(
           context: context,
-          barrierDismissible: true,
+          barrierDismissible: false,
           builder: (context) {
             return AlertDialog(
               content: const Text(
-                'in order to work properly application needs permission to access your camera,photos and media',
+                'in order to work properly application needs permission to access your camera',
                 style: TextStyle(fontSize: 20),
               ),
               actions: [
                 TextButton(
-                    onPressed: () async {
-                      await openAppSettings();
-                    },
-                    child: const Text('Go TO SETTING')),
+                  onPressed: () async {
+                    await openAppSettings();
+                    while (true) {
+                      await Future.delayed(const Duration(milliseconds: 500));
+                      camera = await Permission.camera.status;
+                      if (camera.isGranted) {
+                        Navigator.of(context).pop();
+                        break;
+                      }
+                    }
+                  },
+                  child: const Text('Settings'),
+                ),
               ],
             );
           });

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:chewie/chewie.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
@@ -22,6 +24,7 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
   @override
   void initState() {
     super.initState();
+    FirebaseCrashlytics.instance.setCustomKey("useUID", "Amish Kajavadra");
     netWorkVideo();
   }
 
@@ -36,19 +39,29 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
   Future<void> getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+      if (image == null) {
+        return;
+      }
       // final imagesave = await saveImage(image.path);
       final imagesave = File(image.path);
       setState(() {
         images = imagesave;
       });
+      await FirebaseAnalytics.instance.logEvent(
+        name: 'image_picked',
+        parameters: {'source': source.toString()},
+      );
     } catch (e) {
-      debugPrint("$e");
+      print('Error picking image: $e');
     }
   }
 
   Future<void> getVideo(ImageSource source) async {
     try {
+      await FirebaseAnalytics.instance.logEvent(
+        name: 'video_picked',
+        parameters: {'source': source.toString()},
+      );
       final video = await ImagePicker().pickVideo(source: source);
       videoes = File(video!.path);
       controller = VideoPlayerController.file(videoes!)
@@ -97,6 +110,10 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
             ),
           );
         });
+      await FirebaseAnalytics.instance.logEvent(
+        name: 'video_picked',
+        parameters: {'source': source.toString()},
+      );
     } catch (e) {
       debugPrint("$e");
     }
@@ -166,6 +183,14 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                     ],
                   ),
                 ),
+              ),
+              SizedBox(
+                width: 250,
+                child: ElevatedButton(
+                    onPressed: () {
+                      FirebaseCrashlytics.instance.crash();
+                    },
+                    child: const Text("Example of firebase_crashlytics")),
               ),
               const SizedBox(
                 height: 20,
