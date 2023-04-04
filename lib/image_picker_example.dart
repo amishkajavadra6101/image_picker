@@ -192,6 +192,40 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                     },
                     child: const Text("Example of firebase_crashlytics")),
               ),
+              // SizedBox(
+              //   width: 250,
+              //   child: ElevatedButton(
+              //       onPressed: () {
+              //         //   try {
+              //         //     final List<int> list = [1, 2, 3];
+              //         //     final int item = list[4];
+              //         //   } catch (e, stackTrace) {
+              //         //     FirebaseCrashlytics.instance.recordError(e, stackTrace);
+              //         //   }
+              //         try {
+              //           // Generate a null pointer exception
+              //           String message;
+              //           print('${message.length}');
+              //         } catch (error, stackTrace) {
+              //           // Report the non-fatal error to Firebase Crashlytics
+              //           FirebaseCrashlytics.instance.recordError(
+              //             error,
+              //             stackTrace,
+              //             reason: 'A non-fatal error occurred',
+              //             fatal: false,
+              //           );
+              //         }
+              //       },
+              //       child: const Text("Example of fatal_crash")),
+              // ),
+              // SizedBox(
+              //   width: 250,
+              //   child: ElevatedButton(
+              //       onPressed: () {
+              //         throw Exception('This is a fatal crash!');
+              //       },
+              //       child: const Text("Example of non fatal_crash")),
+              // ),
               const SizedBox(
                 height: 20,
               ),

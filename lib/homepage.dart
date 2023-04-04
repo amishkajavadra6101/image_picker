@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:image_example/file_picker_example.dart';
 import 'package:image_example/flutter_easy_loading_example.dart';
@@ -12,6 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'cached_network_image_example.dart';
 import 'geolocator_example.dart';
 import 'image_picker_example.dart';
+import 'notificationservice/local_notification_service.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -25,9 +27,45 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     requestPermissions();
+    LocalNotificationService.initialize(context);
     FirebaseAnalytics.instance.setCurrentScreen(screenName: 'Home_Screen');
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+    // 1. This method call when app in terminated state and you get a notification
+    FirebaseMessaging.instance.getInitialMessage().then(
+      (message) {
+        if (message != null) {
+          if (message.data['_id'] != null) {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const GeolocatorExample(),
+            ));
+          }
+        }
+      },
+    ); //today i have started with implimenting a push_n
+    // 2. This method only call when App in forground it mean app must be opened
+    FirebaseMessaging.onMessage.listen(
+      (message) {
+        if (message.notification != null) {
+          debugPrint(message.notification!.title);
+          debugPrint(message.notification!.body);
+          debugPrint("message.data11 ${message.data}");
+          LocalNotificationService.display(message);
+        }
+      },
+    );
+    // 3. This method only call when App in background and not terminated(not closed)
+    FirebaseMessaging.onMessageOpenedApp.listen(
+      (message) {
+        if (message.notification != null) {
+          if (message.data['_id'] != null) {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const FilePicker1(),
+            ));
+          }
+        }
+      },
+    );
   }
 
   @override
