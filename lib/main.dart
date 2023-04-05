@@ -10,11 +10,11 @@ import 'homepage.dart';
 //   runApp(const MyApp());
 // }
 Future<void> backgroundHandler(RemoteMessage message) async {
-  print(message.data.toString());
-  print(message.notification!.title);
+  debugPrint(message.notification!.title);
 }
 
 void main() async {
+  // This ensures that the Flutter framework's bindings are initialized and ready to handle any communication with Firebase's native code
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize Firebase
   await Firebase.initializeApp();

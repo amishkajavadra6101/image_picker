@@ -52,7 +52,7 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
         parameters: {'source': source.toString()},
       );
     } catch (e) {
-      print('Error picking image: $e');
+      debugPrint('Error picking image: $e');
     }
   }
 

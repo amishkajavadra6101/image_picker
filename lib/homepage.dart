@@ -3,8 +3,10 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:image_example/device_info_pluse.dart';
 import 'package:image_example/file_picker_example.dart';
 import 'package:image_example/flutter_easy_loading_example.dart';
+import 'package:image_example/package_info_plus.dart';
 import 'package:image_example/path_provider_example.dart';
 import 'package:image_example/toast_example.dart';
 import 'package:image_example/url_launcher_exampler.dart';
@@ -41,16 +43,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             ));
           }
         }
-      },
-    ); //today i have started with implimenting a push_n
+      }, //firebase gave you headsup notifaction in background but firebace not gave headsup notification while app in foreground
+    );
     // 2. This method only call when App in forground it mean app must be opened
     FirebaseMessaging.onMessage.listen(
       (message) {
         if (message.notification != null) {
           debugPrint(message.notification!.title);
           debugPrint(message.notification!.body);
-          debugPrint("message.data11 ${message.data}");
-          LocalNotificationService.display(message);
+          // LocalNotificationService.display(message);
         }
       },
     );
@@ -74,13 +75,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    super.didChangeAppLifecycleState(state);
-    // if (showingAlertDialog && await Permission.camera.status.isGranted) {
-    //   Navigator.pop(context);
-    // }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) async {
+  //   super.didChangeAppLifecycleState(state);
+  //   // if (showingAlertDialog && await Permission.camera.status.isGranted) {
+  //   //   Navigator.pop(context);
+  //   // }
+  // }
 
   requestPermissions() async {
     PermissionStatus camera = await Permission.camera.status;
@@ -134,6 +135,48 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(
                 height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Dinfo()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go device info pluse",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Pinfo()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go Package info plus",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
