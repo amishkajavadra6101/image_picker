@@ -14,7 +14,7 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
-  // This ensures that the Flutter framework's bindings are initialized and ready to handle any communication with Firebase's native code
+  // This ensures that the Flutter framework's bindings are initialized and ready to handle any communication with Firebase code
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize Firebase
   await Firebase.initializeApp();

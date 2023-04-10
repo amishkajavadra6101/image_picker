@@ -13,6 +13,7 @@ import 'package:image_example/url_launcher_exampler.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'cached_network_image_example.dart';
+import 'fire_store_example.dart';
 import 'geolocator_example.dart';
 import 'image_picker_example.dart';
 import 'notificationservice/local_notification_service.dart';
@@ -135,6 +136,28 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(
                 height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FireStoreExample()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "firestore example",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
