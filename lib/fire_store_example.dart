@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_example/firebase_image_picker.dart';
+import 'package:image_example/singletone_example.dart';
 
 class FireStoreExample extends StatefulWidget {
   const FireStoreExample({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _FireStoreExampleState extends State<FireStoreExample> {
 
   @override
   Widget build(BuildContext context) {
+    GloableClass().name = 'amish';
     return Scaffold(
         appBar: AppBar(
           title: const Text('Example of firestore'),
@@ -39,8 +41,7 @@ class _FireStoreExampleState extends State<FireStoreExample> {
                   stream: FirebaseFirestore.instance
                       .collection('products')
                       .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
                           child: Text(
