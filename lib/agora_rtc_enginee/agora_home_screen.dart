@@ -4,7 +4,8 @@ import 'package:image_example/agora_rtc_enginee/video_call.dart';
 
 const appId = "e6e86fdf3bf343cfbb9a05ebe259e109";
 const token =
-    "007eJxTYAjoM1Sb8Evq4PHLxqend4klz/4SuSsxrUXq7cu2M5rFnrsUGFLNUi3M0lLSjJPSjE2Mk9OSkiwTDUxTk1KNTC1TDQ0sGXPMUhoCGRkW2vqzMjJAIIjPwlCSWlzCwAAAoGEgCg==";
+    "007eJxTYFA6E9MebnldhPP54V+Bz7iKJuqofk0vbdjJvfHDjStB54wUGEzSjJONjNKME42STUwMktIsU8yByMLYJNHM0tIk1ej4aZuUhkBGhjwfJ0ZGBggE8dkYkotSE0tSGRgArdEgcg==";
+const channel = "create";
 
 class AgoraHome extends StatefulWidget {
   const AgoraHome({Key? key}) : super(key: key);
@@ -15,10 +16,12 @@ class AgoraHome extends StatefulWidget {
 
 class _AgoraHomeState extends State<AgoraHome> {
   final TextEditingController _channelController = TextEditingController();
+  final TextEditingController _createchannelController =
+      TextEditingController();
 
   Future<void> _joinChannel() async {
     final String channelName = _channelController.text.trim();
-    if (channelName == 'test') {
+    if (channelName == channel) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -55,8 +58,31 @@ class _AgoraHomeState extends State<AgoraHome> {
             children: [
               TextFormField(
                 decoration: const InputDecoration(
-                    hintText: 'Enter a channel name',
-                    labelText: 'channel name',
+                    hintText: 'channel name',
+                    labelText: 'Create channel',
+                    icon: Icon(Icons.text_fields_outlined)),
+                controller: _createchannelController,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "create Channel",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    hintText: 'channel name',
+                    labelText: 'Enter channel name',
                     icon: Icon(Icons.edit)),
                 controller: _channelController,
               ),

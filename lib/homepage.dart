@@ -10,6 +10,7 @@ import 'package:image_example/expended_example.dart';
 import 'package:image_example/file_picker_example.dart';
 import 'package:image_example/flutter_easy_loading_example.dart';
 import 'package:image_example/intl_example.dart';
+import 'package:image_example/key/keyhome/key_home.dart';
 import 'package:image_example/media_query_example.dart';
 import 'package:image_example/package_info_plus.dart';
 import 'package:image_example/path_provider_example.dart';
@@ -181,6 +182,28 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     child: const Text(
                       "Agora uikit  video call",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const KeyHome()),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: const Text(
+                      "go to key example",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
