@@ -277,9 +277,6 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
               SizedBox(
                 width: 250,
                 child: ElevatedButton(
-                  onPressed: () {
-                    getVideo(ImageSource.camera);
-                  },
                   child: Row(
                     children: const [
                       Icon(Icons.camera),
@@ -289,6 +286,9 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                       Text("Pick video form Camera")
                     ],
                   ),
+                  onPressed: () {
+                    getVideo(ImageSource.camera);
+                  },
                 ),
               ),
             ],

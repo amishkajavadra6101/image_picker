@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_example/key/gloable_key.dart';
+import 'package:image_example/key/object_key_example.dart';
 import 'package:image_example/key/page_storage_key.dart';
 import 'package:image_example/key/unique_key_example.dart';
 import 'package:image_example/key/value_key.dart';
@@ -53,6 +54,26 @@ class KeyHome extends StatelessWidget {
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                   child: const Text(
                     "Global key example",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ObjectKeyExample()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  child: const Text(
+                    "Object key example",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),

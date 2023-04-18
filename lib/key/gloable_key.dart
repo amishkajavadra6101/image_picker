@@ -10,14 +10,14 @@ class GlobalKeyExample extends StatefulWidget {
 class _GlobalKeyExampleState extends State<GlobalKeyExample> {
   /*GlobalKey is used to uniquely identify the widget and
   By using a GlobalKey, we can access the current state of these widgets and perform actions on them, like validating the form when the submitForm
-  function is calle*/
+  function is call*/
   final _formKey = GlobalKey<FormState>();
   final _textKey = GlobalKey<FormFieldState>();
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       String textValue = _textKey.currentState!.value.toString();
-      print('Text input: $textValue');
+      debugPrint('Text input: $textValue');
     }
   }
 
