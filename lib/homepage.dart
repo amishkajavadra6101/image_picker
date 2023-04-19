@@ -175,7 +175,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => VideoCall()),
+                        MaterialPageRoute(
+                            builder: (context) => const VideoCall()),
                       );
                     },
                     style:

@@ -1,5 +1,6 @@
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_uikit/agora_uikit.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 const appId = "4f3c22f3a2c440bf9d79d7834a6994e2";
@@ -9,7 +10,6 @@ const channel = "create";
 
 // ignore: must_be_immutable
 class VideoCall extends StatefulWidget {
-  // List<User> users;
   const VideoCall({
     Key? key,
   }) : super(key: key);
@@ -19,9 +19,9 @@ class VideoCall extends StatefulWidget {
 }
 
 class _VideoCallState extends State<VideoCall> {
-  // int? _remoteUid;
-  List<int> _remoteUsers = [];
   // int? _localUid;
+  // int? _remoteUid;
+  final List<int> _remoteUsers = [];
   bool _localUserJoined = false;
   int? localUid;
   bool _isMicMuted = false;
@@ -39,6 +39,13 @@ class _VideoCallState extends State<VideoCall> {
     engine.leaveChannel();
     super.dispose();
   }
+
+  final _colorizeColors = [
+    Colors.purple,
+    Colors.blue,
+    Colors.yellow,
+    Colors.red,
+  ];
 
   Future<void> initAgora() async {
     await [Permission.microphone, Permission.camera].request();
@@ -60,7 +67,6 @@ class _VideoCallState extends State<VideoCall> {
         onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
           debugPrint("remote user $remoteUid joined");
           setState(() {
-            // _remoteUid = remoteUid;
             _remoteUsers.add(remoteUid);
           });
         },
@@ -69,7 +75,6 @@ class _VideoCallState extends State<VideoCall> {
           debugPrint("remote user $remoteUid left channel");
           debugPrint("user left that channel because of $reason");
           setState(() {
-            // _remoteUid = null;
             _remoteUsers.remove(remoteUid);
           });
         },
@@ -82,7 +87,6 @@ class _VideoCallState extends State<VideoCall> {
     await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
     await engine.enableVideo();
     await engine.startPreview();
-    //The joinChannel method is used to join a specific channel in the Agora Video SDK.
     await engine.joinChannel(
       token: token,
       channelId: channel,
@@ -119,28 +123,61 @@ class _VideoCallState extends State<VideoCall> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agora Video Call'),
+        title: AnimatedTextKit(
+          animatedTexts: [
+            WavyAnimatedText(
+              'Agora rtc engine Video Call',
+              textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: [
-          // Remote videos
-          GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemCount: _remoteUsers.length,
-            itemBuilder: (context, index) {
-              int uid = _remoteUsers[index];
-              return AgoraVideoView(
-                controller: VideoViewController.remote(
-                  rtcEngine: engine,
-                  canvas: VideoCanvas(uid: uid),
-                  connection: const RtcConnection(channelId: channel),
+          _remoteUsers.isEmpty
+              ? Center(
+                  child: AnimatedTextKit(animatedTexts: [
+                    TyperAnimatedText(
+                      'Please wait for remote user to join',
+                      textStyle: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    ColorizeAnimatedText(
+                      'Please wait for remote user to join',
+                      textStyle: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      colors: _colorizeColors,
+                    ),
+                  ]),
+                )
+              : GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: _remoteUsers.length > 1 ? 2 : 1,
+                      childAspectRatio: _remoteUsers.length == 1
+                          ? MediaQuery.of(context).size.width /
+                              MediaQuery.of(context).size.height
+                          : 9 / 16
+                      // childAspectRatio: _remoteUsers.length > 1 ? 9 / 16 : 1,
+                      ),
+                  itemCount: _remoteUsers.length,
+                  itemBuilder: (context, index) {
+                    int uid = _remoteUsers[index];
+                    return SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: AgoraVideoView(
+                        controller: VideoViewController.remote(
+                          rtcEngine: engine,
+                          canvas: VideoCanvas(uid: uid),
+                          connection: const RtcConnection(channelId: channel),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          // Local video
           Positioned(
             right: 16,
             bottom: 16,
@@ -152,7 +189,7 @@ class _VideoCallState extends State<VideoCall> {
                     ? AgoraVideoView(
                         controller: VideoViewController(
                           rtcEngine: engine,
-                          canvas: const VideoCanvas(uid: 0),
+                          canvas: const VideoCanvas(uid: 0), //_localUid),
                         ),
                       )
                     : const CircularProgressIndicator(),
@@ -195,6 +232,4 @@ class _VideoCallState extends State<VideoCall> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-
-  // Render remote videos
 }

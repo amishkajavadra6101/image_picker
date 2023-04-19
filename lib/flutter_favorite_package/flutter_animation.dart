@@ -8,7 +8,11 @@ class FlutterAnimateExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Animate'),
+        title: const Text('Flutter Animate')
+            .animate()
+            .slideX()
+            .then()
+            .shake(duration: 2000.ms),
       ),
       body: Center(
         child: Column(
