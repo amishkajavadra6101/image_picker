@@ -48,6 +48,22 @@ class _FlutterEasyLoadingExampleState extends State<FlutterEasyLoadingExample> {
     EasyLoading.showSuccess('This is a success message!');
   }
 
+  void configLoading() {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..indicatorType = EasyLoadingIndicatorType.doubleBounce
+      ..maskType = EasyLoadingMaskType.custom
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..indicatorSize = 100
+      ..radius = 10.0
+      ..progressColor = Colors.white
+      ..backgroundColor = const Color(0xff65499C)
+      ..indicatorColor = Colors.white
+      ..textColor = Colors.white
+      ..maskColor = Colors.transparent
+      ..userInteractions = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +74,11 @@ class _FlutterEasyLoadingExampleState extends State<FlutterEasyLoadingExample> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: configLoading,
+              child: const Text('Show config Loading'),
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: progress,

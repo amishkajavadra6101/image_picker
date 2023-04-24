@@ -6,6 +6,8 @@ import 'package:image_example/key/unique_key_example.dart';
 import 'package:image_example/key/value_key.dart';
 import 'package:image_example/key/vluenotifier.dart';
 
+import '../../helper/button.dart';
+
 class KeyHome extends StatelessWidget {
   const KeyHome({Key? key}) : super(key: key);
 
@@ -19,126 +21,54 @@ class KeyHome extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+            HelperButton(
+                text: 'Value key example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ValueKeyExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "Value key example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                          builder: (context) => const ValueKeyExample()));
+                }),
+            HelperButton(
+                text: 'Global key example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const GlobalKeyExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "Global key example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                          builder: (context) => const GlobalKeyExample()));
+                }),
+            HelperButton(
+                text: 'Object key example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ObjectKeyExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "Object key example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                          builder: (context) => const ObjectKeyExample()));
+                }),
+            HelperButton(
+                text: 'Unique key example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const UniqueKeyExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "Unique key example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                          builder: (context) => const UniqueKeyExample()));
+                }),
+            HelperButton(
+                text: 'Pagestorage example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const PageStorageExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "Pagestorage example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                          builder: (context) => const PageStorageExample()));
+                }),
+            HelperButton(
+                text: 'ValueNotifier example',
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ValueNotfierExample()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text(
-                    "ValueNotifier example",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
+                          builder: (context) => const ValueNotfierExample()));
+                }),
           ],
         ),
       ),

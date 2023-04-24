@@ -5,23 +5,32 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:image_example/agora_rtc_enginee/video_call.dart';
 import 'package:image_example/agora_ui_kit.dart';
+import 'package:image_example/animated_container_example.dart';
 import 'package:image_example/device_info_pluse.dart';
 import 'package:image_example/expended_example.dart';
 import 'package:image_example/file_picker_example.dart';
 import 'package:image_example/flutter_easy_loading_example.dart';
 import 'package:image_example/flutter_favorite_package/favorite_package_home/package_home.dart';
+import 'package:image_example/helper/button.dart';
 import 'package:image_example/intl_example.dart';
 import 'package:image_example/key/keyhome/key_home.dart';
 import 'package:image_example/media_query_example.dart';
 import 'package:image_example/package_info_plus.dart';
 import 'package:image_example/path_provider_example.dart';
+import 'package:image_example/richtext_example.dart';
+import 'package:image_example/spacer_example.dart';
+import 'package:image_example/tableview.dart';
 import 'package:image_example/toast_example.dart';
 import 'package:image_example/url_launcher_exampler.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'PageView/page_builder_example.dart';
+import 'Scrollbar/scrollbar_example.dart';
+import 'agora_rtc_enginee/dropdwon_buttonhide_underline.dart';
 import 'cached_network_image_example.dart';
 import 'dio_example.dart';
 import 'fire_store_example.dart';
+import 'fittedbox_example.dart';
 import 'geolocator_example.dart';
 import 'image_picker_example.dart';
 import 'notificationservice/local_notification_service.dart';
@@ -35,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   // bool showingAlertDialog = false;
+
   @override
   void initState() {
     requestPermissions();
@@ -108,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           builder: (context) {
             return AlertDialog(
               content: const Text(
-                'in order to work properly application needs permission to access your camera',
+                'in order to work   properly application needs permission to access your camera',
                 style: TextStyle(fontSize: 20),
               ),
               actions: [
@@ -138,430 +148,254 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         appBar: AppBar(
           title: const Text('image picker'),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PackageHome()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Flutter Favorite Packages",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        body: Scrollbar(
+          thumbVisibility: true,
+          thickness: 10,
+          radius: const Radius.circular(20),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HelperButton(
+                        text: 'Flutter Favorite Packages',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PackageHome()));
+                        }),
+                    HelperButton(
+                        text: "go to Agora video call",
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const VideoCall()));
+                        }),
+                    HelperButton(
+                        text: 'Agora uikit  video call',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AgoraUiKit()));
+                        }),
+                    HelperButton(
+                        text: 'go to key example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const KeyHome()));
+                        }),
+                    HelperButton(
+                        text: 'firestore example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FireStoreExample()));
+                        }),
+                    HelperButton(
+                        text: 'go device info pluse',
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Dinfo()));
+                        }),
+                    HelperButton(
+                        text: 'go Package info plus',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Pinfo()));
+                        }),
+                    HelperButton(
+                        text: 'go to toast example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ToastExample()));
+                        }),
+                    HelperButton(
+                        text: 'cached_network_image',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CachedNetworkImageExample()));
+                        }),
+                    HelperButton(
+                        text: 'go to geolocator example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const GeolocatorExample()));
+                        }),
+                    HelperButton(
+                        text: 'flutter easy loading',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FlutterEasyLoadingExample()));
+                        }),
+                    HelperButton(
+                        text: 'go to path picker example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PathExample()));
+                        }),
+                    HelperButton(
+                        text: 'go to file picker example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const FilePicker1()));
+                        }),
+                    HelperButton(
+                      text: 'go to url Launcher',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Url1()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const VideoCall()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to Agora video call",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'go to image picker',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ImagePickerExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AgoraUiKit()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Agora uikit  video call",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Expended example',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ExpendedExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const KeyHome()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to key example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Media Query example',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const MediaQueryExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FireStoreExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "firestore example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Dio example',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DioExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Dinfo()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go device info pluse",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Intl example',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const IntleExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Pinfo()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go Package info plus",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Example of Page View',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyPageView()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ToastExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to toast example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Example of Scrollbar',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ScrollBarExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const CachedNetworkImageExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "cached_network_image",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Example of TableView',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TabBarViewWidget()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const GeolocatorExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to geolocator example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'animatedContainer',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const AnimatedContainerExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const FlutterEasyLoadingExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "flutter easy loading",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Example of Spacer',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SpacerExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PathExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to path picker example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'Example of fittedbox',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const FittedBoxExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FilePicker1()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to file picker example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'DropdownButton Example',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const DropDownButtonHideUnderLineExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Url1()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to url Launcher ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    HelperButton(
+                      text: 'example of rich text',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RichTextExample()));
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ImagePickerExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "go to image picker ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ExpendedExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Expended example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MediaQueryExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Media Query example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => DioExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Dio example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const IntleExample()),
-                      );
-                    },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text(
-                      "Intl example",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
+                  ]),
+            ),
           ),
         ));
   }

@@ -21,6 +21,14 @@ class _CachedNetworkImageExampleState extends State<CachedNetworkImageExample> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CachedNetworkImage(
+              fadeOutDuration: const Duration(milliseconds: 0),
+              fadeInDuration: const Duration(milliseconds: 0),
+              fit: BoxFit.fill,
+              filterQuality: FilterQuality.low,
+              placeholderFadeInDuration: const Duration(milliseconds: 0),
+              useOldImageOnUrlChange: false,
+              // height: height,
+              // width: width,
               imageUrl:
                   'https://images.unsplash.com/photo-1532264523420-881a47db012d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9',
               imageBuilder: (context, imageProvider) {

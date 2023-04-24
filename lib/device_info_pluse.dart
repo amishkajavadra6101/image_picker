@@ -10,13 +10,8 @@ class Dinfo extends StatelessWidget {
   Future<AndroidDeviceInfo> getAndoridInfo() async {
     return await deviceInfoPlugin.androidInfo;
   }
-  // Future<IosDeviceInfo> getIosInof() async {
-  //   return await deviceInfoPlugin.iosInfo;
-  // }
-  // Future<MacOsDeviceInfo> getMacOsInfo() async {
-  //   return await deviceInfoPlugin.macOsInfo;
-  // }
 
+  // Future<IosDeviceInfo> getIosInof() async {
   Widget showCard(String name, String value) {
     return Card(
       child: ListTile(

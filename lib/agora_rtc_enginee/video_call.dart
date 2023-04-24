@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 const appId = "4f3c22f3a2c440bf9d79d7834a6994e2";
 const token =
-    "007eJxTYBDlnLBVZV5+/RrVc7xfVq3pOf+zz4ifu5pBo+7Ag4cv5O4oMJikGScbGaUZJxolm5gYJKVZppgDkYWxSaKZpaVJqtHHRLuUhkBGhtOrT7AwMkAgiM/GkFyUmliSysAAAJWZIPI=";
+    "007eJxTYFD+ZOnyPaXzZNPK+pvPLLU6I3uzi55PFucKv9UuypEcOEuBwSTNONnIKM040SjZxMQgKc0yxRyILIxNEs0sLU1SjSJ326c0BDIy6M05ysrIAIEgPhtDclFqYkkqAwMAajUfYQ==";
 const channel = "create";
 
 // ignore: must_be_immutable
