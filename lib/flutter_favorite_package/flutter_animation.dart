@@ -42,8 +42,8 @@ class FlutterAnimateExample extends StatelessWidget {
                   width: 250,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(Icons.image_outlined),
                         SizedBox(
                           width: 20,
@@ -57,8 +57,8 @@ class FlutterAnimateExample extends StatelessWidget {
                   width: 250,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(Icons.camera),
                         SizedBox(
                           width: 20,

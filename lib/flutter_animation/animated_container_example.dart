@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class AnimatedContainerExample extends StatefulWidget {
   const AnimatedContainerExample({Key? key}) : super(key: key);
 
@@ -10,19 +9,20 @@ class AnimatedContainerExample extends StatefulWidget {
 
 class _AnimatedContainerExampleState extends State<AnimatedContainerExample> {
   bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('example of animated Container'),
       ),
-      body: GestureDetector(
-        onTap: () {
-          setState(() {
-            selected = !selected;
-          });
-        },
-        child: Center(
+      body: Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              selected = !selected;
+            });
+          },
           child: AnimatedContainer(
             width: selected ? 200.0 : 100.0,
             height: selected ? 100.0 : 200.0,

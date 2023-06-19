@@ -29,35 +29,13 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
       appBar: AppBar(
         title: const Text(
           'example of animated text',
-          style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          style: TextStyle( fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AnimatedTextKit(
-              animatedTexts: [
-                RotateAnimatedText('AWESOME'),
-                RotateAnimatedText('OPTIMISTIC'),
-                RotateAnimatedText(
-                  'DIFFERENT',
-                  textStyle: const TextStyle(
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ],
-              isRepeatingAnimation: true,
-              totalRepeatCount: 10,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: 10,),
             AnimatedTextKit(
               animatedTexts: [
                 FadeAnimatedText('do IT!'),
@@ -65,14 +43,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 FadeAnimatedText('do it RIGHT NOW!!!'),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -82,14 +56,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 TyperAnimatedText('- W.Edwards Deming'),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -101,14 +71,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                     cursor: '💡'),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -117,14 +83,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 ScaleAnimatedText('Ship'),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -145,14 +107,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             TextLiquidFill(
               text: 'LIQUIDY',
@@ -164,14 +122,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
               ),
               boxHeight: 300,
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -186,14 +140,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 WavyAnimatedText('They look so Amazing'),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               repeatForever: true,
@@ -203,14 +153,10 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 FlickerAnimatedText("C'est La Vie !"),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
             const Divider(
-              height: 1,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
             ),
             AnimatedTextKit(
               animatedTexts: [
@@ -244,6 +190,27 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                 )
               ],
             ),
+            const Divider(
+              height: 40,
+              thickness: 2,
+              color: Colors.black12,
+            ),
+            AnimatedTextKit(
+              animatedTexts: [
+                RotateAnimatedText('AWESOME'),
+                RotateAnimatedText('OPTIMISTIC'),
+                RotateAnimatedText(
+                    'DIFFERENT',
+                    textStyle: const TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                    duration: Duration(seconds: 5)
+                ),
+              ],
+              isRepeatingAnimation: true,
+              totalRepeatCount: 10,
+            ),
+
           ],
         ),
       ),

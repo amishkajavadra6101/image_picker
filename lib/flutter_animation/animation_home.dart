@@ -1,83 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:image_example/flutter_favorite_package/animated_text.dart';
-import 'package:image_example/flutter_favorite_package/animations_packages/shared%20axis.dart';
-import 'package:image_example/flutter_favorite_package/flutter_animation.dart';
-import '../../flutter_animation/animated_container_example.dart';
-import '../../helper/button.dart';
-import '../animations_packages/animations_container.dart';
-import '../curved_navigation_bar.dart';
-import '../shimmer_animation.dart';
-import '../widget_circular_animator.dart';
+import 'package:image_example/flutter_animation/hero_animation.dart';
+import 'package:image_example/flutter_animation/tween_animation.dart';
 
-class PackageHome extends StatelessWidget {
-  const PackageHome({Key? key}) : super(key: key);
+import '../helper/button.dart';
+import 'animated_container_example.dart';
+import 'animated_opacity.dart';
+import 'animated_padding.dart';
+import 'animated_positioned.dart';
+import 'animated_switcher.dart';
+
+class AnimationHome extends StatelessWidget {
+  const AnimationHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Animation Packages'),
+        title: const Text('Animation Home'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HelperButton(
-                text: 'Flutter_animation',
+                text: 'Hero Animation',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const FlutterAnimateExample()));
+                          builder: (context) => const HeroAnimation()));
                 }),
             HelperButton(
-                text: 'animated text',
+                text: 'Tween Animation',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AnimatedTextExample1()));
-                }),
-
-            HelperButton(
-                text: 'curved navigation bar',
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>  CurevedNavBar()));
+                          builder: (context) => TweenAnimation()));
                 }),
             HelperButton(
-                text: 'CircularAnimator',
+                text: 'Animated opacity',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  CircularAnimator()));
+                          builder: (context) =>
+                              const AnimatedOpacityExample()));
                 }),
             HelperButton(
-                text: 'ShimmerAnimations',
+                text: 'Animated Padding',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  const ShimmerAnimations()));
+                          builder: (context) =>
+                              const AnimatedPaddingExample()));
                 }),
             HelperButton(
-                text: 'ContainerAnimationDemo',
+                text: 'animated container',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>   AnimationsContainerDemo()));
+                          builder: (context) => const AnimatedContainerExample()));
                 }),
             HelperButton(
-                text: 'Screen1',
+                text: 'animated positioned',
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>   Screen1()));
+                          builder: (context) =>  AnimatedPositionedExample()));
+                }),
+            HelperButton(
+                text: 'animated Switcher',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  AnimatedSwitcherExample()));
                 }),
           ],
         ),
