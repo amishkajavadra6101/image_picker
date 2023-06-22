@@ -33,7 +33,8 @@ class _AnimatedPaddingExampleState extends State<AnimatedPaddingExample> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 4,
                 color: Colors.red,
-              ),)
+              ),),
+          
         ],
       ),
     );
