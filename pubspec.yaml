@@ -45,6 +45,7 @@ dependencies:
   animations: ^2.0.7
   flutter_staggered_animations: ^1.1.1
   speech_to_text: ^6.2.0
+  avatar_glow: ^2.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
