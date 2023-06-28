@@ -13,8 +13,9 @@ class SpeechScreen extends StatefulWidget {
 class _SpeechScreenState extends State<SpeechScreen> {
   final ValueNotifier<bool> isListen = ValueNotifier<bool>(false);
   SpeechToText speechToText = SpeechToText();
-  String dialogText = "";
-  String text = "";
+  TextEditingController controller = TextEditingController();
+  String dialogText = '';
+
   @override
   void dispose() {
     speechToText.stop();
@@ -28,8 +29,8 @@ class _SpeechScreenState extends State<SpeechScreen> {
 
   void onStopPressed() {
     setState(() {
-      text += dialogText;
-      dialogText = "";
+      controller.text += dialogText;
+      dialogText = '';
     });
     speechToText.stop();
     Navigator.pop(context);
@@ -42,7 +43,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
       speechToText.listen(
         onResult: (result) {
           setState(() {
-            dialogText = result.recognizedWords;
+            dialogText = result.recognizedWords; // Store recognized text
           });
         },
       );
@@ -96,7 +97,6 @@ class _SpeechScreenState extends State<SpeechScreen> {
                 );
               },
             ),
-
             Row(
               children: [
                 Expanded(
@@ -156,7 +156,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
                       showModal();
                       isListen.value = false;
                     })),
-            controller: TextEditingController(text: text),
+            controller: controller,
             maxLines: null,
           ),
         ),
