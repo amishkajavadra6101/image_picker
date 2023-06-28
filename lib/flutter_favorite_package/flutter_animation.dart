@@ -68,6 +68,7 @@ class FlutterAnimateExample extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 SizedBox(
                   width: 250,
                   child: ElevatedButton(

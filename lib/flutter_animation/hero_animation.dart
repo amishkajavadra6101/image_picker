@@ -13,23 +13,37 @@ class HeroAnimation extends StatelessWidget {
       body: Center(
         child: InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HeroDetail()));
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const HeroDetail(),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              ),
+            );
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const HeroDetail()));
           },
           child: const Padding(
             padding: EdgeInsets.all(20),
-              child: Hero(
-                tag: "example",
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundImage: AssetImage(
-                      "assets/camera_lense.jpeg",
-                    ),
-                  ),
+            child: Hero(
+              tag: "example",
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage(
+                  "assets/camera_lense.jpeg",
+                ),
               ),
             ),
           ),
         ),
+      ),
     );
   }
 }

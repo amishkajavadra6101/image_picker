@@ -57,7 +57,7 @@ class _ValueKeyExampleState extends State<ValueKeyExample> {
                     const TextField(
                       /*using this value key here we can remove value togather textfiled if we not use a value key then it remove only
                       first textfield not there value*/
-                      key: ValueKey(1),
+                      // key: ValueKey(1),
                       decoration: InputDecoration(
                         labelText: 'Text Field 1',
                       ),

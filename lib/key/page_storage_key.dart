@@ -20,7 +20,7 @@ class _PageStorageExampleState extends State<PageStorageExample> {
       body: PageStorage(
         /*it holds the state information for the current page. When a new page is navigated to, the state information for the current page
         is stored in the bucket, and when the user returns to the previous page, the state is retrieved from the bucket and restored.*/
-        bucket: globalBucket,
+        bucket: PageStorageBucket(),
         child: ListView.builder(
           key: const PageStorageKey<String>("listViewKey"),
           itemCount: 100,
