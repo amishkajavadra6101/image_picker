@@ -5,7 +5,7 @@ import 'animation_container_detail.dart';
 
 
 class AnimationsContainerDemo extends StatefulWidget {
-  AnimationsContainerDemo({
+  const AnimationsContainerDemo({
     Key? key
   }): super(key: key);
 
@@ -14,7 +14,7 @@ class AnimationsContainerDemo extends StatefulWidget {
 }
 
 class _AnimationsContainerDemoState extends State<AnimationsContainerDemo> {
-  ContainerTransitionType _transitionType = ContainerTransitionType.fade;
+  final ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _AnimationsContainerDemoState extends State<AnimationsContainerDemo> {
           return OpenContainer<bool>(
             transitionType: _transitionType,
             openBuilder: (BuildContext _, VoidCallback openContainer) {
-              return AnimationContainarDetail();
+              return const AnimationContainarDetail();
             },
             closedShape: const RoundedRectangleBorder(),
             closedElevation: 0.0,

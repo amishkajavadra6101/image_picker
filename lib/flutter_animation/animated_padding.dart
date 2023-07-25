@@ -14,7 +14,7 @@ class _AnimatedPaddingExampleState extends State<AnimatedPaddingExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Animated Padding"),
+        title: const Text("Animated Padding"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +25,7 @@ class _AnimatedPaddingExampleState extends State<AnimatedPaddingExample> {
                   padValue = padValue == 0.0 ? 100.0 : 0.0;
                 });
               },
-              child: Text("Animated Padding")),
+              child: const Text("Animated Padding")),
           AnimatedPadding(
               padding: EdgeInsets.all(padValue),
               duration: const Duration(seconds: 2),

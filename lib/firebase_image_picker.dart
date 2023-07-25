@@ -86,9 +86,9 @@ class _FirebaseImagePickerState extends State<FirebaseImagePicker> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return const AlertDialog(
           content: Row(
-            children: const [
+            children: [
               CircularProgressIndicator(),
               SizedBox(width: 20),
               Text("Loading..."),
@@ -151,8 +151,8 @@ class _FirebaseImagePickerState extends State<FirebaseImagePicker> {
                   //     () {
                   //   getImage(ImageSource.gallery);
                   // },
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.image_outlined),
                       SizedBox(
                         width: 20,
@@ -173,8 +173,8 @@ class _FirebaseImagePickerState extends State<FirebaseImagePicker> {
                   //     () {
                   //   getImage(ImageSource.camera);
                   // },
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.camera),
                       SizedBox(
                         width: 20,
@@ -188,8 +188,8 @@ class _FirebaseImagePickerState extends State<FirebaseImagePicker> {
                 width: 250,
                 child: ElevatedButton(
                   onPressed: isUploading == false ? null : upLoadImage,
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.camera),
                       SizedBox(
                         width: 20,

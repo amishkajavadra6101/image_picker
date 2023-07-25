@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-void main() => runApp(MaterialApp(home: CurevedNavBar()));
+void main() => runApp(const MaterialApp(home: CurevedNavBar()));
 
 class CurevedNavBar extends StatefulWidget {
+  const CurevedNavBar({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CurevedNavBarState createState() => _CurevedNavBarState();
 }
 
 class _CurevedNavBarState extends State<CurevedNavBar> {
   int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("curved nav bar"),
+          title: const Text("curved nav bar"),
         ),
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,

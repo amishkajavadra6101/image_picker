@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnimationContainarDetail extends StatelessWidget {
+  const AnimationContainarDetail({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class AnimationContainarDetail extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Title',
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Colors.black54,
                     fontSize: 30.0,
                   ),
@@ -24,7 +26,7 @@ class AnimationContainarDetail extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   'Demo details page',
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.black54,
                     height: 1.5,
                     fontSize: 16.0,

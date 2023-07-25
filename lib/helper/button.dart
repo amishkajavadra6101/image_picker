@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HelperButton extends StatelessWidget {
-  String text;
-  VoidCallback onTap;
-  HelperButton({Key? key, required this.text, required this.onTap})
+  final String text;
+  final VoidCallback onTap;
+  const HelperButton({Key? key, required this.text, required this.onTap})
       : super(key: key);
 
   @override

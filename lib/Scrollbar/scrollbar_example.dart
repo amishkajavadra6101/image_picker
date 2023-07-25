@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ScrollBarExample extends StatefulWidget {
+  const ScrollBarExample({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ScrollBarExampleState createState() => _ScrollBarExampleState();
 }
 
@@ -17,7 +20,7 @@ class _ScrollBarExampleState extends State<ScrollBarExample> {
       body: RawScrollbar(
         controller: _scrollController,
         thumbColor: Colors.blue,
-        radius: Radius.circular(8),
+        radius: const Radius.circular(8),
         thickness: 8,
         child: ListView.builder(
           controller: _scrollController,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SliverListExample extends StatelessWidget {
+  const SliverListExample({super.key});
+
   SliverPersistentHeader makeHeader(String headerText) {
     return SliverPersistentHeader(
       pinned: true,

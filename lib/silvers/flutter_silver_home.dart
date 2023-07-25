@@ -31,7 +31,7 @@ class FlutterSilver extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SliverListExample()));
+                          builder: (context) => const SliverListExample()));
                 }),
           ],
         ),

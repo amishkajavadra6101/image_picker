@@ -35,7 +35,7 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             AnimatedTextKit(
               animatedTexts: [
                 FadeAnimatedText('do IT!'),
@@ -204,7 +204,7 @@ class _AnimatedTextExample1State extends State<AnimatedTextExample1> {
                     textStyle: const TextStyle(
                       decoration: TextDecoration.underline,
                     ),
-                    duration: Duration(seconds: 5)
+                    duration: const Duration(seconds: 5)
                 ),
               ],
               isRepeatingAnimation: true,

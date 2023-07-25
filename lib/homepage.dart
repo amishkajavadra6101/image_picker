@@ -359,7 +359,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ScrollBarExample()));
+                                builder: (context) => const ScrollBarExample()));
                       },
                     ),
                     HelperButton(
@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => TabBarViewWidget()));
+                                builder: (context) => const TabBarViewWidget()));
                       },
                     ),
 

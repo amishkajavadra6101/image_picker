@@ -1,5 +1,5 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
+import 'package:flutter/material.dart' show Alignment, AnimatedBuilder, Animation, AnimationController, AppBar, Border, BorderRadius, BorderRadiusTween, BoxDecoration, BuildContext, Center, Color, ColorTween, Colors, Container, CurvedAnimation, Curves, EdgeInsets, EdgeInsetsTween, GestureDetector, HitTestBehavior, Interval, Opacity, Scaffold, State, StatefulWidget, StatelessWidget, Text, TickerCanceled, TickerProviderStateMixin, Tween, Widget;
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 class StaggerAnimation extends StatelessWidget {

@@ -7,7 +7,7 @@ class Route1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: CustomMyAppBar(title: "pagerote1 example"),
+      appBar: const CustomMyAppBar(title: "pagerote1 example"),
       body: Container(
         color: Colors.red,
       ),

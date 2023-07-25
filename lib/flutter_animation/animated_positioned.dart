@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AnimatedPositionedExample extends StatefulWidget {
+  const AnimatedPositionedExample({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AnimatedPositionedExampleState createState() =>
       _AnimatedPositionedExampleState();
 }
@@ -53,7 +56,7 @@ class _AnimatedPositionedExampleState extends State<AnimatedPositionedExample> {
             _isPositionedLeft = !_isPositionedLeft;
           });
         },
-        child: Icon(Icons.play_arrow),
+        child: const Icon(Icons.play_arrow),
       ),
     );
   }

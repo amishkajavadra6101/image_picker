@@ -52,7 +52,7 @@ class AnimationHome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TweenAnimation()));
+                            builder: (context) => const TweenAnimation()));
                   }),
               HelperButton(
                   text: 'Animated opacity',
@@ -87,7 +87,7 @@ class AnimationHome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AnimatedPositionedExample()));
+                            builder: (context) => const AnimatedPositionedExample()));
                   }),
               HelperButton(
                   text: 'animated Switcher',
@@ -95,13 +95,13 @@ class AnimationHome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AnimatedSwitcherExample()));
+                            builder: (context) => const AnimatedSwitcherExample()));
                   }),
               HelperButton(
                   text: 'Staggered Animetion',
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => StaggerDemo()));
+                        MaterialPageRoute(builder: (context) => const StaggerDemo()));
                   }),
               HelperButton(
                   text: 'PageRouteBuilderExample',
@@ -110,7 +110,7 @@ class AnimationHome extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             // fullscreenDialog: true,
-                            builder: (context) => PageRouteBuilderExample()));
+                            builder: (context) => const PageRouteBuilderExample()));
                   }),
               HelperButton(
                   text: 'Animated Icon',
@@ -118,7 +118,7 @@ class AnimationHome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AnimatedIconExample()));
+                            builder: (context) => const AnimatedIconExample()));
                   }),
               HelperButton(
                   text: 'Animated List',

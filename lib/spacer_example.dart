@@ -88,9 +88,9 @@ class SpacerExample extends StatelessWidget {
       appBar: AppBar(
         title: const Text('example of spacer'),
       ),
-      body: Center(
+      body: const Center(
         child: Row(
-          children: const [
+          children: [
             Text('Begin'),
             Spacer(), // Defaults to a flex of one.
             Text('Middle'),

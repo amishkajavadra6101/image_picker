@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_example/widget/custom_app_bar.dart';
 
 class AnimatedIconExample extends StatefulWidget {
+  const AnimatedIconExample({super.key});
+
   @override
   State<AnimatedIconExample> createState() => _AnimatedIconExampleState();
 }

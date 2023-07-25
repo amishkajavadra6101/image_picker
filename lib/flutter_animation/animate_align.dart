@@ -4,6 +4,7 @@ class Dialep extends StatefulWidget {
   const Dialep({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DialepState createState() => _DialepState();
 }
 

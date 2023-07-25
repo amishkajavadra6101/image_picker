@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:image_example/flutter_favorite_package/animated_text.dart';
 import 'package:image_example/flutter_favorite_package/animations_packages/shared%20axis.dart';
 import 'package:image_example/flutter_favorite_package/flutter_animation.dart';
-import 'package:image_example/silvers/flutter_silver_home.dart';
 import '../../helper/button.dart';
 import '../animations_packages/animations_container.dart';
 import '../curved_navigation_bar.dart';
@@ -46,7 +45,7 @@ class PackageHome extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  CurevedNavBar()));
+                          builder: (context) =>  const CurevedNavBar()));
                 }),
             HelperButton(
                 text: 'CircularAnimator',
@@ -54,7 +53,7 @@ class PackageHome extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  CircularAnimator()));
+                          builder: (context) =>  const CircularAnimator()));
                 }),
             HelperButton(
                 text: 'ShimmerAnimations',
@@ -70,7 +69,7 @@ class PackageHome extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>   AnimationsContainerDemo()));
+                          builder: (context) =>   const AnimationsContainerDemo()));
                 }),
             HelperButton(
                 text: 'Screen1',
@@ -78,7 +77,7 @@ class PackageHome extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>   Screen1()));
+                          builder: (context) =>   const Screen1()));
                 }),
           ],
         ),

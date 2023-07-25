@@ -156,8 +156,8 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                   onPressed: () {
                     getImage(ImageSource.gallery);
                   },
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.image_outlined),
                       SizedBox(
                         width: 20,
@@ -173,8 +173,8 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                   onPressed: () {
                     getImage(ImageSource.camera);
                   },
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.camera),
                       SizedBox(
                         width: 20,
@@ -263,8 +263,8 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
                   onPressed: () {
                     getVideo(ImageSource.gallery);
                   },
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.image_outlined),
                       SizedBox(
                         width: 20,
@@ -277,8 +277,8 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
               SizedBox(
                 width: 250,
                 child: ElevatedButton(
-                  child: Row(
-                    children: const [
+                  child: const Row(
+                    children: [
                       Icon(Icons.camera),
                       SizedBox(
                         width: 20,

@@ -5,7 +5,10 @@ import 'package:image_example/widget/custom_app_bar.dart';
 import '../../helper/button.dart';
 
 class PageRouteBuilderExample extends StatefulWidget {
+  const PageRouteBuilderExample({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PageRouteBuilderExampleState createState() =>
       _PageRouteBuilderExampleState();
 }
