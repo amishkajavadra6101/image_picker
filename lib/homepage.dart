@@ -18,6 +18,7 @@ import 'package:image_example/key/keyhome/key_home.dart';
 import 'package:image_example/media_query_example.dart';
 import 'package:image_example/package_info_plus.dart';
 import 'package:image_example/path_provider_example.dart';
+import 'package:image_example/qr_code_generator.dart';
 import 'package:image_example/richtext_example.dart';
 import 'package:image_example/silvers/flutter_silver_home.dart';
 import 'package:image_example/spacer_example.dart';
@@ -32,6 +33,7 @@ import 'cached_network_image_example.dart';
 import 'dio_example.dart';
 import 'fire_store_example.dart';
 import 'fittedbox_example.dart';
+import 'form_field.dart';
 import 'geolocator_example.dart';
 import 'image_picker_example.dart';
 import 'notificationservice/local_notification_service.dart';
@@ -173,6 +175,22 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>  const SpeechScreen()));
+                        }),
+                    HelperButton(
+                        text: 'QR Code Generator',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const QrGeneratore()));
+                        }),
+                    HelperButton(
+                        text: 'Form Field Example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FormFieldExample()));
                         }),
                     HelperButton(
                         text: 'Animation Home',
