@@ -19,6 +19,7 @@ import 'package:image_example/media_query_example.dart';
 import 'package:image_example/package_info_plus.dart';
 import 'package:image_example/path_provider_example.dart';
 import 'package:image_example/richtext_example.dart';
+import 'package:image_example/silvers/flutter_silver_home.dart';
 import 'package:image_example/spacer_example.dart';
 import 'package:image_example/tableview.dart';
 import 'package:image_example/toast_example.dart';
@@ -157,6 +158,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    HelperButton(
+                        text: 'Silvers',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const FlutterSilver()));
+                        }),
                     HelperButton(
                         text: 'Speech to Text with package',
                         onTap: () {

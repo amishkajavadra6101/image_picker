@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_example/flutter_favorite_package/animated_text.dart';
 import 'package:image_example/flutter_favorite_package/animations_packages/shared%20axis.dart';
 import 'package:image_example/flutter_favorite_package/flutter_animation.dart';
-import '../../flutter_animation/animated_container_example.dart';
+import 'package:image_example/silvers/flutter_silver_home.dart';
 import '../../helper/button.dart';
 import '../animations_packages/animations_container.dart';
 import '../curved_navigation_bar.dart';
@@ -22,6 +22,7 @@ class PackageHome extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             HelperButton(
                 text: 'Flutter_animation',
                 onTap: () {

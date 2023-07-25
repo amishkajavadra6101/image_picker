@@ -142,7 +142,7 @@ class AnimationHome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AnimateAlignExample()));
+                            builder: (context) => const Dialep()));
                   }),
             ],
           ),
