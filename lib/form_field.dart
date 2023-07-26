@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_fields/flutter_form_fields.dart';
 
 class FormFieldExample extends StatefulWidget {
-  FormFieldExample({super.key});
+  const FormFieldExample({super.key});
 
   @override
   State<FormFieldExample> createState() => _FormFieldExampleState();
@@ -36,7 +36,7 @@ class _FormFieldExampleState extends State<FormFieldExample> {
 }
 
 class FormWidget extends StatelessWidget {
-  FormWidget({
+  const FormWidget({
     super.key,
     required this.formKey,
     required this.likedThisApp,

@@ -21,7 +21,9 @@ import 'package:image_example/path_provider_example.dart';
 import 'package:image_example/qr_code_generator.dart';
 import 'package:image_example/richtext_example.dart';
 import 'package:image_example/silvers/flutter_silver_home.dart';
+import 'package:image_example/smooth_page_indicator.dart';
 import 'package:image_example/spacer_example.dart';
+import 'package:image_example/syncfusion_flutter_datagrid.dart';
 import 'package:image_example/tableview.dart';
 import 'package:image_example/toast_example.dart';
 import 'package:image_example/url_launcher_exampler.dart';
@@ -31,6 +33,7 @@ import 'Scrollbar/scrollbar_example.dart';
 import 'agora_rtc_enginee/dropdwon_buttonhide_underline.dart';
 import 'cached_network_image_example.dart';
 import 'dio_example.dart';
+import 'email_verfication.dart';
 import 'fire_store_example.dart';
 import 'fittedbox_example.dart';
 import 'form_field.dart';
@@ -177,6 +180,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                                   builder: (context) =>  const SpeechScreen()));
                         }),
                     HelperButton(
+                        text: 'Email Verification',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EmailVerification()));
+                        }),
+                    HelperButton(
                         text: 'QR Code Generator',
                         onTap: () {
                           Navigator.push(
@@ -185,12 +196,28 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                                   builder: (context) => const QrGeneratore()));
                         }),
                     HelperButton(
+                        text: 'syncfusion flutter datagrid',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SyncfusionFlutterDatagrid()));
+                        }),
+                    HelperButton(
+                        text: 'smooth page indicator',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SmoothPageIndicatorExample()));
+                        }),
+                    HelperButton(
                         text: 'Form Field Example',
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FormFieldExample()));
+                                  builder: (context) => const FormFieldExample()));
                         }),
                     HelperButton(
                         text: 'Animation Home',
