@@ -31,7 +31,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'PageView/page_builder_example.dart';
 import 'Scrollbar/scrollbar_example.dart';
 import 'agora_rtc_enginee/dropdwon_buttonhide_underline.dart';
-import 'audio_player.dart';
 import 'cached_network_image_example.dart';
 import 'dio_example.dart';
 import 'email_verfication.dart';
@@ -211,14 +210,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const SmoothPageIndicatorExample()));
-                        }),
-                    HelperButton(
-                        text: 'Audio Player',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AudioPlayerExample()));
                         }),
                     HelperButton(
                         text: 'Form Field Example',
