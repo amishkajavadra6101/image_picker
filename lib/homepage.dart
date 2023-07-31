@@ -21,6 +21,7 @@ import 'package:image_example/path_provider_example.dart';
 import 'package:image_example/qr_code_generator.dart';
 import 'package:image_example/richtext_example.dart';
 import 'package:image_example/silvers/flutter_silver_home.dart';
+import 'package:image_example/silvers/isolates.dart';
 import 'package:image_example/smooth_page_indicator.dart';
 import 'package:image_example/spacer_example.dart';
 import 'package:image_example/syncfusion_flutter_datagrid.dart';
@@ -163,6 +164,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    HelperButton(
+                        text: 'IsolatesExample',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const IsolatesExample()));
+                        }),
                     HelperButton(
                         text: 'Silvers',
                         onTap: () {
