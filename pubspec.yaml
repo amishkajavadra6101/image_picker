@@ -49,6 +49,7 @@ dependencies:
   flutter_form_fields: ^0.0.2
   email_otp: ^2.0.1
   syncfusion_flutter_datagrid: ^22.1.39
+  syncfusion_flutter_charts: ^22.2.5
   smooth_page_indicator: ^1.1.0
 dev_dependencies:
   flutter_test:

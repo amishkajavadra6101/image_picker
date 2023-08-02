@@ -21,13 +21,15 @@ import 'package:image_example/path_provider_example.dart';
 import 'package:image_example/qr_code_generator.dart';
 import 'package:image_example/richtext_example.dart';
 import 'package:image_example/silvers/flutter_silver_home.dart';
-import 'package:image_example/silvers/isolates.dart';
+import 'package:image_example/isolate/isolate_spawn.dart';
 import 'package:image_example/smooth_page_indicator.dart';
 import 'package:image_example/spacer_example.dart';
+import 'package:image_example/syncfusion_flutter_charts/syncfusion_flutter_charts.dart';
 import 'package:image_example/syncfusion_flutter_datagrid.dart';
 import 'package:image_example/tableview.dart';
 import 'package:image_example/toast_example.dart';
 import 'package:image_example/url_launcher_exampler.dart';
+import 'package:image_example/isolate/compute_isolate.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'PageView/page_builder_example.dart';
 import 'Scrollbar/scrollbar_example.dart';
@@ -165,12 +167,28 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     HelperButton(
-                        text: 'IsolatesExample',
+                        text: 'Syncfusion Flutter Charts',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SyncfusionFlutterChartExample()));
+                        }),
+                    HelperButton(
+                        text: 'Spawn Isolate Example',
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const IsolatesExample()));
+                        }),
+                    HelperButton(
+                        text: 'Compute Isolate Example',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ComputeIsolateExample()));
                         }),
                     HelperButton(
                         text: 'Silvers',
@@ -425,7 +443,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                                 builder: (context) => const TabBarViewWidget()));
                       },
                     ),
-
                     HelperButton(
                       text: 'Example of Spacer',
                       onTap: () {

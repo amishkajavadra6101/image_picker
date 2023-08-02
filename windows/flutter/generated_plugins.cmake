@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   agora_rtc_engine
-  audioplayers_windows
   firebase_core
   geolocator_windows
   iris_event
